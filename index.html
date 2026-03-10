@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Docketly / Project Overview</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Syne:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:        #F5F3EE;
+  --surface:   #FDFCFA;
+  --navy:      #0D1B2E;
+  --ink:       #1C2B3A;
+  --steel:     #2A5275;
+  --steel-mid: #3D6E96;
+  --sky:       #5A9ABF;
+  --mist:      #E2EAF2;
+  --border:    #D8D3CA;
+  --gold:      #B8873A;
+  --gold-lt:   #F0E4CC;
+  --text:      #1C2B3A;
+  --sub:       #4A6070;
+  --quiet:     #7A90A0;
+  --green:     #2A6645;
+  --green-bg:  #EAF3ED;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Syne', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* HEADER */
+header {
+  background: var(--navy);
+  padding: 64px 72px 56px;
+  position: relative;
+  overflow: hidden;
+}
+
+header .bg-glow {
+  position: absolute;
+  top: 0; right: 0;
+  width: 480px; height: 480px;
+  background: radial-gradient(ellipse at top right, rgba(90,154,191,0.12) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+header .bg-ring {
+  position: absolute;
+  bottom: -60px; left: -60px;
+  width: 280px; height: 280px;
+  border-radius: 50%;
+  border: 1px solid rgba(90,154,191,0.07);
+  pointer-events: none;
+}
+
+.header-inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 48px;
+  align-items: end;
+}
+
+.eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--sky);
+  margin-bottom: 20px;
+  opacity: 0.85;
+}
+
+.brand {
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+  margin-bottom: 16px;
+}
+
+.brand-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 76px;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: -2px;
+  line-height: 1;
+}
+
+.brand-divider {
+  width: 1px;
+  height: 42px;
+  background: rgba(255,255,255,0.13);
+  flex-shrink: 0;
+  align-self: center;
+}
+
+.brand-tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  font-weight: 400;
+  font-style: italic;
+  color: rgba(255,255,255,0.38);
+  line-height: 1.45;
+  max-width: 260px;
+}
+
+.header-desc {
+  font-size: 13.5px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.45);
+  max-width: 500px;
+  line-height: 1.8;
+}
+
+.header-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.meta-item { display: flex; flex-direction: column; gap: 5px; }
+
+.meta-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.28);
+}
+
+.meta-value {
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.75);
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: #D4A855;
+}
+
+.status-badge::before {
+  content: '';
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: #D4A855;
+}
+
+/* MAIN */
+main {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 64px 72px 96px;
+}
+
+/* SECTION LABEL */
+.section-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9.5px;
+  font-weight: 500;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--steel-mid);
+  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.section-label::before {
+  content: '';
+  width: 18px;
+  height: 1px;
+  background: var(--steel-mid);
+  flex-shrink: 0;
+}
+
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+section { margin-bottom: 64px; }
+
+/* OPPORTUNITY */
+.opportunity {
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--gold);
+  background: var(--surface);
+  border-radius: 2px 8px 8px 2px;
+  padding: 32px 40px;
+  margin-bottom: 28px;
+}
+
+.opportunity p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--ink);
+  line-height: 1.65;
+}
+
+.opportunity p strong {
+  font-weight: 600;
+  color: var(--steel);
+}
+
+/* TWO COL */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 32px 36px;
+}
+
+.card-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--quiet);
+  margin-bottom: 12px;
+}
+
+.card-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 12px;
+}
+
+.card-body {
+  font-size: 13.5px;
+  font-weight: 400;
+  color: var(--sub);
+  line-height: 1.75;
+}
+
+.card.dark {
+  background: var(--navy);
+  border-color: rgba(90,154,191,0.18);
+}
+.card.dark .card-label { color: var(--sky); opacity: 0.65; }
+.card.dark .card-title { color: #fff; }
+.card.dark .card-body  { color: rgba(255,255,255,0.45); }
+
+/* USERS */
+.users-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.user-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 28px 28px 24px;
+}
+
+.user-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 44px;
+  font-weight: 600;
+  color: var(--mist);
+  line-height: 1;
+  margin-bottom: 16px;
+}
+
+.user-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+
+.user-desc {
+  font-size: 12.5px;
+  font-weight: 400;
+  color: var(--sub);
+  line-height: 1.65;
+}
+
+/* FEATURES */
+.pillars {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.pillar {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 28px 26px 24px;
+  position: relative;
+}
+
+.pillar-accent {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  border-radius: 8px 8px 0 0;
+}
+
+.pa-1 { background: var(--steel); }
+.pa-2 { background: var(--gold); }
+.pa-3 { background: #3A8A6A; }
+.pa-4 { background: #7A4A8A; }
+.pa-5 { background: #8A3A3A; }
+.pa-6 { background: #4A5A8A; }
+
+.pillar-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9.5px;
+  font-weight: 500;
+  color: var(--quiet);
+  opacity: 0.5;
+  margin-bottom: 14px;
+  letter-spacing: 1px;
+}
+
+.pillar-title {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 10px;
+}
+
+.pillar-desc {
+  font-size: 12.5px;
+  font-weight: 400;
+  color: var(--sub);
+  line-height: 1.7;
+}
+
+/* SECURITY */
+.security-block {
+  background: var(--navy);
+  border-radius: 10px;
+  padding: 44px 48px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.sec-item {
+  padding: 0 36px;
+  border-right: 1px solid rgba(255,255,255,0.06);
+}
+.sec-item:first-child { padding-left: 0; }
+.sec-item:last-child  { padding-right: 0; border-right: none; }
+
+.sec-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--sky);
+  opacity: 0.65;
+  margin-bottom: 12px;
+}
+
+.sec-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+
+.sec-desc {
+  font-size: 12.5px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.4);
+  line-height: 1.72;
+}
+
+/* SCOPE */
+.scope-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.scope-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 32px 36px;
+}
+
+.scope-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 22px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.scope-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.scope-dot.green { background: var(--green); }
+.scope-dot.grey  { background: var(--quiet); opacity: 0.35; }
+
+.scope-title {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  color: var(--ink);
+}
+.scope-title.muted { color: var(--quiet); }
+
+.scope-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.scope-list li {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--sub);
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  line-height: 1.5;
+}
+
+.scope-list li .check {
+  width: 14px; height: 14px;
+  border-radius: 3px;
+  background: var(--green-bg);
+  border: 1px solid rgba(42,102,69,0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+  font-size: 8px;
+  color: var(--green);
+  font-weight: 700;
+}
+
+.scope-list.deferred li .check {
+  background: var(--bg);
+  border-color: var(--border);
+  color: var(--quiet);
+  font-size: 10px;
+}
+
+/* TECH STACK */
+.stack-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.stack-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 24px 28px;
+  display: grid;
+  grid-template-columns: 12px 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+.stack-dot-col {
+  padding-top: 18px;
+}
+
+.stack-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+}
+
+.stack-role {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--quiet);
+  margin-bottom: 5px;
+}
+
+.stack-name {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 10px;
+  letter-spacing: 0.1px;
+}
+
+.stack-why {
+  font-size: 12.5px;
+  font-weight: 400;
+  color: var(--sub);
+  line-height: 1.72;
+}
+
+.sd-electron { background: #4A90D9; }
+.sd-react    { background: #61DAFB; }
+.sd-ts       { background: #3178C6; }
+.sd-vite     { background: #BD34FE; }
+.sd-sqlite   { background: #3A8A6A; }
+.sd-crypto   { background: #B8873A; }
+.sd-pbkdf2   { background: #8A3A3A; }
+.sd-pdfjs    { background: #E44D26; }
+.sd-zustand  { background: #764ABC; }
+.sd-builder  { background: #4A5A8A; }
+
+/* APPROVAL */
+.approval-footer {
+  margin-top: 72px;
+  padding-top: 40px;
+  border-top: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 48px;
+}
+
+.approval-block { display: flex; flex-direction: column; }
+
+.approval-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--quiet);
+  margin-bottom: 28px;
+}
+
+.approval-line {
+  height: 1px;
+  background: rgba(28,43,58,0.15);
+  margin-bottom: 10px;
+}
+
+.approval-name {
+  font-size: 12px;
+  color: var(--quiet);
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  header { padding: 48px 36px 44px; }
+  .header-inner { grid-template-columns: 1fr; gap: 32px; }
+  .header-meta { text-align: left; flex-direction: row; flex-wrap: wrap; gap: 24px; }
+  main { padding: 48px 36px 72px; }
+  .brand-name { font-size: 52px; }
+  .two-col, .scope-grid, .stack-grid { grid-template-columns: 1fr; }
+  .pillars, .users-row { grid-template-columns: 1fr 1fr; }
+  .security-block { grid-template-columns: 1fr; gap: 28px; padding: 36px 32px; }
+  .sec-item { padding: 0; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 24px; }
+  .sec-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .approval-footer { grid-template-columns: 1fr; gap: 28px; }
+}
+
+@media print {
+  body { background: #fff; }
+  header, .security-block { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  main { padding: 40px 48px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="bg-glow"></div>
+  <div class="bg-ring"></div>
+  <div class="header-inner">
+    <div class="header-left">
+      <div class="eyebrow">// Project Overview / Scope Approval</div>
+      <div class="brand">
+        <div class="brand-name">Docketly</div>
+        <div class="brand-divider"></div>
+        <div class="brand-tagline">Mass tort case management, built for the real world</div>
+      </div>
+      <div class="header-desc">A fully local, encrypted desktop application for managing mass tort litigation. Every byte stays on your machine. No cloud. No compromises.</div>
+    </div>
+    <div class="header-meta">
+      <div class="meta-item">
+        <span class="meta-label">Document Type</span>
+        <span class="meta-value">Stakeholder Brief</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Version</span>
+        <span class="meta-value">1.0</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Platform</span>
+        <span class="meta-value">Windows / macOS</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Status</span>
+        <span class="status-badge">Pending Approval</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <section>
+    <div class="section-label">The Opportunity</div>
+    <div class="opportunity">
+      <p>The leading case management tools have migrated to the cloud, creating a <strong>critical data protection gap</strong> for law firms handling confidential mass tort matters. Docketly closes that gap with a modern desktop application that keeps every file, every client record, and every privileged communication exactly where it belongs: on your machine.</p>
+    </div>
+    <div class="two-col">
+      <div class="card">
+        <div class="card-label">Context</div>
+        <div class="card-title">The Problem</div>
+        <div class="card-body">Cloud-based tools introduce unacceptable risk for confidential litigation. Mass tort cases involve thousands of clients, medical records, and privileged communications. The leading solution, CaseMap+, requires all of this to live on third-party servers. Lawyers have widely reported the cloud version is slower, harder to use, and less reliable than its legacy desktop predecessor. A fast, local, privacy-first alternative has clear and unmet demand.</div>
+      </div>
+      <div class="card dark">
+        <div class="card-label">Approach</div>
+        <div class="card-title">The Solution</div>
+        <div class="card-body">Docketly runs entirely on the user's machine. All data is AES-256 encrypted at rest and nothing ever leaves the device. It brings the organizational depth of CaseMap together with a modern interface, a full mass tort lifecycle timeline with drill-down navigation, and the data protection posture that legal ethics actually requires.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">Target Users</div>
+    <div class="users-row">
+      <div class="user-card">
+        <div class="user-num">01</div>
+        <div class="user-title">Solo Practitioners</div>
+        <div class="user-desc">Attorneys managing complex litigation independently who need enterprise-grade organization without the cost, complexity, or data exposure of enterprise tools.</div>
+      </div>
+      <div class="user-card">
+        <div class="user-num">02</div>
+        <div class="user-title">Small Law Firms</div>
+        <div class="user-desc">2 to 10 attorney firms handling plaintiff-side mass tort or personal injury litigation across multiple concurrent matters.</div>
+      </div>
+      <div class="user-card">
+        <div class="user-num">03</div>
+        <div class="user-title">Large Firm Departments</div>
+        <div class="user-desc">Litigation teams requiring strict local data residency for regulatory compliance, client confidentiality mandates, or conflict-of-interest isolation.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">Core Features / V1</div>
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar-accent pa-1"></div>
+        <div class="pillar-num">F-01</div>
+        <div class="pillar-title">Case and Client Management</div>
+        <div class="pillar-desc">Organize matters with multiple clients per case. Track diagnosis dates, medical history, opposing counsel, retained experts, and witnesses in a single structured workspace per matter.</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-accent pa-2"></div>
+        <div class="pillar-num">F-02</div>
+        <div class="pillar-title">Litigation Timeline</div>
+        <div class="pillar-desc">Full mass tort lifecycle across 7 color-coded phases from initial investigation through post-settlement. List and Gantt views, switchable. Drill down from phase to event to linked documents and individual evidence.</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-accent pa-3"></div>
+        <div class="pillar-num">F-03</div>
+        <div class="pillar-title">Document Management</div>
+        <div class="pillar-desc">Upload and encrypt medical records, briefs, depositions, correspondence, and expert reports. Integrated PDF viewer using in-memory decryption only. Bates numbering and privilege designation supported.</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-accent pa-4"></div>
+        <div class="pillar-num">F-04</div>
+        <div class="pillar-title">Facts Table</div>
+        <div class="pillar-desc">Structured fact entry linked to source documents. Strength ratings with a color-coded heat map showing what supports or undermines the case. Filterable and exportable to CSV for trial preparation.</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-accent pa-5"></div>
+        <div class="pillar-num">F-05</div>
+        <div class="pillar-title">Entity Recognition</div>
+        <div class="pillar-desc">Automatically extracts people, organizations, and key dates from uploaded documents. Cross-references entities across all case files to surface connections, patterns, and gaps in the record.</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-accent pa-6"></div>
+        <div class="pillar-num">F-06</div>
+        <div class="pillar-title">Search, Export, and Backup</div>
+        <div class="pillar-desc">Global search across all cases, documents, facts, and parties. Export timelines to PDF and facts to CSV. Full encrypted backup and restore for safeguarding the entire case database.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">Security and Data Protection</div>
+    <div class="security-block">
+      <div class="sec-item">
+        <div class="sec-tag">Encryption</div>
+        <div class="sec-title">AES-256 at Rest</div>
+        <div class="sec-desc">The entire SQLite database and every stored file are encrypted with AES-256. Physical access to the machine yields nothing without the master password. Documents are decrypted in memory only and never written to disk in plain text.</div>
+      </div>
+      <div class="sec-item">
+        <div class="sec-tag">Network</div>
+        <div class="sec-title">Zero External Connectivity</div>
+        <div class="sec-desc">Electron's Content Security Policy is configured to block all outbound requests with no exceptions. No analytics, no telemetry, no cloud sync. Every dependency is bundled at build time and nothing is fetched at runtime.</div>
+      </div>
+      <div class="sec-item">
+        <div class="sec-tag">Authentication</div>
+        <div class="sec-title">Password-Derived Keys</div>
+        <div class="sec-desc">The master password is never stored. At login, PBKDF2 derives a cryptographic key that lives in memory for the session only. A configurable idle timeout triggers auto-lock, wiping the key from memory entirely.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">V1 Scope</div>
+    <div class="scope-grid">
+      <div class="scope-card">
+        <div class="scope-header">
+          <div class="scope-dot green"></div>
+          <div class="scope-title">Included in V1</div>
+        </div>
+        <ul class="scope-list">
+          <li><span class="check">&#10003;</span>Full security layer: encryption, authentication, network lockdown</li>
+          <li><span class="check">&#10003;</span>Case, client, and party management with mass tort support</li>
+          <li><span class="check">&#10003;</span>Document upload, encrypted storage, and in-memory PDF viewer</li>
+          <li><span class="check">&#10003;</span>Litigation timeline across 7 phases with 30+ event types</li>
+          <li><span class="check">&#10003;</span>List view and Gantt view with phase and event drill-down</li>
+          <li><span class="check">&#10003;</span>Facts table with strength heat map and CSV export</li>
+          <li><span class="check">&#10003;</span>Entity recognition across uploaded documents</li>
+          <li><span class="check">&#10003;</span>Global search across all case data</li>
+          <li><span class="check">&#10003;</span>Timeline PDF export and encrypted full backup</li>
+          <li><span class="check">&#10003;</span>Native installers for Windows and macOS</li>
+        </ul>
+      </div>
+      <div class="scope-card">
+        <div class="scope-header">
+          <div class="scope-dot grey"></div>
+          <div class="scope-title muted">Deferred to Future Versions</div>
+        </div>
+        <ul class="scope-list deferred">
+          <li><span class="check">&#8594;</span>Multi-user team collaboration and shared access</li>
+          <li><span class="check">&#8594;</span>Optional encrypted backup to a firm-controlled server</li>
+          <li><span class="check">&#8594;</span>AI-powered document summarization</li>
+          <li><span class="check">&#8594;</span>Mobile application</li>
+          <li><span class="check">&#8594;</span>Calendar integrations (Outlook, Google)</li>
+          <li><span class="check">&#8594;</span>Billing and time tracking</li>
+          <li><span class="check">&#8594;</span>Multi-language support</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">Technology Stack</div>
+    <div class="stack-grid">
+
+      <div class="stack-item">
+        <div class="stack-dot-col"><div class="stack-dot sd-electron"></div></div>
+        <div>
+          <div class="stack-role">Desktop Shell</div>
+          <div class="stack-name">Electron</div>
+          <div class="stack-why">Packages the application as a native executable for both Windows and macOS from a single codebase. More importantly, it provides access to Node.js APIs that are unavailable in a browser, which is a hard requirement for encrypting files directly on disk and holding the SQLCipher database key in memory without exposing it to the renderer process.</div>
+        </div>
+      </div>
+
+      <div class="stack-item">
+        <div class="stack-dot-col"><div class="stack-dot sd-react"></div></div>
+        <div>
+          <div class="stack-role">UI Framework</div>
+          <div class="stack-name">React 18</div>
+          <div class="stack-why">Docketly's interface is composed of many independently stateful views: a drill-down timeline, a filterable facts table, a document viewer, and an entity panel. React's component model manages this complexity cleanly while its large ecosystem ensures long-term maintainability. It is also already familiar from the portfolio project, reducing ramp-up time.</div>
+        </div>
+      </div>
+
+      <div class="stack-item">
+        <div class="stack-dot-col"><div class="stack-dot sd-ts"></div></div>
+        <div>
+          <div class="stack-role">Language</div>
+          <div class="stack-name">TypeScript (strict mode)</div>
+          <div class="stack-why">Legal data structures are complex. TypeScript's static type system enforces correctness at compile time rather than at runtime, making it significantly harder to pass malformed data between the database, the IPC bridge, and the UI. For a security-critical application where data integrity is non-negotiable, this is especially valuable in preventing logic errors that could compromise case records.</div>
+        </div>
+      </div>
+
+      <div class="stack-item">
+        <div class="stack-dot-col"><div class="stack-dot sd-vite"></div></div>
+        <div>
+          <div class="stack-role">Build Tooling</div>
+          <div class="stack-name">Vite</div>
+          <div class="stack-why">Provides fast hot module replacement during development and optimized production builds that bundle all dependencies into the application at compile time. Because Docketly enforces a strict zero-network policy, every asset must be self-contained at build time with no runtime fetching allowed. Vite handles this reliably and is already in use in the existing project.</div>
+        </div>
+      </div>
+
+      <div class="stack-item">
+        <div class="stack-dot-col"><div class="stack-dot sd-sqlite"></div></div>
+        <div>
+          <div class="stack-role">Database</div>
+          <div class="stack-name">SQLite + SQLCipher</div>
+          <div class="stack-why">SQLite stores all structured case data in a single file on disk, making it ideal for a local application with no server. SQLCipher is a well-audited open source extension that transparently encrypts every page of the database with AES-256. Without the correct key derived from the master password, the database file is indistinguishable from random noise and is unreadable even with forensic tools.</div>
+        </div>
+      </div>
+
+      <div class="stack-item">
+        <div class="stack-dot-col"><div class="stack-dot sd-crypto"></div></div>
+        <div>
+          <div class="stack-role">File Encryption</div>
+          <div class="stack-name">AES-256-GCM via Node.js crypto</div>
+          <div class="stack-why">Every uploaded document is encrypted individually before being written to the vault folder. GCM mode provides both confidentiality and integrity verification, meaning any tampering with the ciphertext is detected on open. Decryption happens in memory only and the plain text is never flushed to disk, protecting documents against file system level forensic recovery.</div>
+        </div>
+      </div>
+
+      <div class="stack-item">
+        <div class="stack-dot-col"><div class="stack-dot sd-pbkdf2"></div></div>
+        <div>
+          <div class="stack-role">Key Derivation</div>
+          <div class="stack-name">PBKDF2</div>
+          <div class="stack-why">Converts the master password into the AES encryption key by running it through a cryptographic hash 100,000 times with a unique random salt. This deliberate computational cost makes brute-force attacks impractically slow: an attacker who obtains the database file would need to run 100,000 hash iterations per password guess rather than computing millions of guesses per second against a plain hash.</div>
+        </div>
+      </div>
+
+      <div class="stack-item">
+        <div class="stack-dot-col"><div class="stack-dot sd-pdfjs"></div></div>
+        <div>
+          <div class="stack-role">PDF Rendering</div>
+          <div class="stack-name">pdf.js (local build)</div>
+          <div class="stack-why">Mozilla's pdf.js renders PDF files entirely within the application using JavaScript, with no external service or system PDF viewer involved. This allows Docketly to pass a decrypted document directly from memory into the renderer without it ever touching the file system in plain text. The library is bundled locally at build time, consistent with the zero-network policy.</div>
+        </div>
+      </div>
+
+      <div class="stack-item">
+        <div class="stack-dot-col"><div class="stack-dot sd-zustand"></div></div>
+        <div>
+          <div class="stack-role">State Management</div>
+          <div class="stack-name">Zustand</div>
+          <div class="stack-why">Manages runtime application state including the in-memory encryption key, the active case, and view state across the timeline, documents, and facts panels. Zustand's minimal footprint and direct store access make it straightforward to implement the security requirement of wiping the key from state on lock without complex side-effect management.</div>
+        </div>
+      </div>
+
+      <div class="stack-item">
+        <div class="stack-dot-col"><div class="stack-dot sd-builder"></div></div>
+        <div>
+          <div class="stack-role">Packaging and Distribution</div>
+          <div class="stack-name">electron-builder</div>
+          <div class="stack-why">Produces signed, platform-specific installers: a DMG for macOS and an NSIS installer for Windows. Code signing is essential for distribution to law firms, as unsigned applications trigger operating system security warnings that undermine credibility. electron-builder handles the full signing and packaging pipeline from a single configuration file, targeting both platforms from one codebase.</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="approval-footer">
+    <div class="approval-block">
+      <div class="approval-label">Prepared By</div>
+      <div class="approval-line"></div>
+      <div class="approval-name">Project Lead</div>
+    </div>
+    <div class="approval-block">
+      <div class="approval-label">Reviewed By</div>
+      <div class="approval-line"></div>
+      <div class="approval-name">Stakeholder</div>
+    </div>
+    <div class="approval-block">
+      <div class="approval-label">Approved On</div>
+      <div class="approval-line"></div>
+      <div class="approval-name">&nbsp;</div>
+    </div>
+  </div>
+
+</main>
+</body>
+</html>
